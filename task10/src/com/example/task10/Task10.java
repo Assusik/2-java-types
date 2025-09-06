@@ -6,9 +6,17 @@ public class Task10 {
 
         // TODO корректно сравнивать два значения типа float с заданной пользователем точностью (параметр - количество знаков после запятой).
         // Функция должна корректно обрабатывать ситуацию со сравнением значений бесконечности.
-        // Функция должна считать значения «не число» NaN (например 0.0/0.0) равными между собой.
-        
-        return a == b;
+        // Функция должна считать значения «не число» NaN (например 0.0/0.0) равными между собой
+        if(Float.isInfinite(a) || Float.isInfinite(b)) {
+            return a == b;
+        }
+        else if (Float.isNaN(a)  || Float.isNaN(b)) {
+            return true;
+        }
+        float scale = (float)Math.pow(10,-precision);
+        return Math.abs(a-b)  < scale;
+
+
 
     }
 
@@ -18,7 +26,10 @@ public class Task10 {
         float sum = a + b;
         float c = 0.7f;
 
-        boolean result = compare(sum, c, 2);
+        float d = Float.NaN;
+        float f = Float.NaN;
+
+        boolean result = compare(d, f, 2);
         System.out.println(result);
 
     }
